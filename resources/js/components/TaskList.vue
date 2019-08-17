@@ -61,18 +61,15 @@
         //    },
            createTask() {
                let data = {
-                   task: this.task,
-                   user_id: this.user_id
+                   body: this.task.body,
+                   user_id: this.user.id
                }
-               let task = {
-                   body: this.task
-               }
-               this.list.push(task)
-               axios.post('api/tasks', this.data)
+               console.log(data);
+               axios.post('api/tasks', data)
                    .then((res) => {
                        this.task.body = '';
                        this.edit = false;
-                       this.fetchTaskList();
+                        this.list.push(res.data.task)
                    })
                    .catch((err) => console.error(err));
            },
@@ -80,6 +77,7 @@
                axios.delete('api/tasks/' + id)
                    .then((res) => {
                        this.fetchTaskList()
+                       this.list.splice(index,1)
                    })
                    .catch((err) => console.error(err));
            },

@@ -39,12 +39,17 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'body' => 'required|max:500'
+            'body' => 'required|max:500',
+            'user_id' => 'required'
         ]);
-        $post= new Task;
-        $post->user_id = auth()->user()->id;
-        $post->save();
-        return Task::create([ 'body' => request('body') ]);
+        $task= new Task;
+        $task->user_id = $request->user_id;
+        $task->body = $request->body;
+        $task->save();
+
+        return response()->json([
+            'task' => $task
+        ]);
     }
 
     /**

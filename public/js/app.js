@@ -1790,18 +1790,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var data = {
-        task: this.task,
-        user_id: this.user_id
+        body: this.task.body,
+        user_id: this.user.id
       };
-      var task = {
-        body: this.task
-      };
-      this.list.push(task);
-      axios.post('api/tasks', this.data).then(function (res) {
+      console.log(data);
+      axios.post('api/tasks', data).then(function (res) {
         _this.task.body = '';
         _this.edit = false;
 
-        _this.fetchTaskList();
+        _this.list.push(res.data.task);
       })["catch"](function (err) {
         return console.error(err);
       });
@@ -1811,6 +1808,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios["delete"]('api/tasks/' + id).then(function (res) {
         _this2.fetchTaskList();
+
+        _this2.list.splice(index, 1);
       })["catch"](function (err) {
         return console.error(err);
       });
