@@ -1803,12 +1803,11 @@ __webpack_require__.r(__webpack_exports__);
         return console.error(err);
       });
     },
-    deleteTask: function deleteTask(id) {
+    deleteTask: function deleteTask(id, index) {
       var _this2 = this;
 
       axios["delete"]('api/tasks/' + id).then(function (res) {
-        _this2.fetchTaskList();
-
+        // this.fetchTaskList()
         _this2.list.splice(index, 1);
       })["catch"](function (err) {
         return console.error(err);
@@ -6276,7 +6275,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card {\n       width: 100%;\n}\n.delete {\n  margin-left:auto;\n}\n.bb {\n    margin: 0px 10% 0px 90%;\n}\n", ""]);
+exports.push([module.i, "\n.card {\n   width: 100%;\n}\n.delete {\n   margin-left:auto;\n}\n.bb {\n   margin: 0px 10% 0px 90%;\n}\n", ""]);
 
 // exports
 
@@ -37864,18 +37863,14 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.list, function(task, index) {
               return _c("li", { key: index, staticClass: "list-group-item" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(task.body) +
-                    "\n                "
-                ),
+                _vm._v("\n          " + _vm._s(task.body) + "\n          "),
                 _c(
                   "button",
                   {
                     staticClass: "btn btn-danger btn-xs bb",
                     on: {
                       click: function($event) {
-                        return _vm.deleteTask(task.id)
+                        return _vm.deleteTask(task.id, index)
                       }
                     }
                   },
