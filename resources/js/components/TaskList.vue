@@ -45,27 +45,19 @@ props:[
       }
     };
   },
-  created() {
-  //    this.fetchTaskList();
-  },
   mounted() {
       if(this.tasks) {
           this.list = this.tasks
       }
   },
   methods: {
-  //    fetchTaskList() {
-  //        axios.get('api/tasks').then((res) => {
-  //            this.list = res.data;
-  //        });
-  //    },
     createTask() {
       let data = {
       body: this.task.body,
       user_id: this.user.id
     }
     console.log(data);
-      axios.post('api/tasks', data)
+      axios.post('tasks', data)
         .then((res) => {
           this.task.body = '';
           this.edit = false;
@@ -74,9 +66,8 @@ props:[
       .catch((err) => console.error(err));
     },
     deleteTask(id,index) {
-      axios.delete('api/tasks/' + id)
+      axios.delete('tasks/' + id)
         .then((res) => {
-          // this.fetchTaskList()
           this.list.splice(index,1)
         })
         .catch((err) => console.error(err));

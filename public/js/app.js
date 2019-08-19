@@ -1773,19 +1773,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {//    this.fetchTaskList();
-  },
   mounted: function mounted() {
     if (this.tasks) {
       this.list = this.tasks;
     }
   },
   methods: {
-    //    fetchTaskList() {
-    //        axios.get('api/tasks').then((res) => {
-    //            this.list = res.data;
-    //        });
-    //    },
     createTask: function createTask() {
       var _this = this;
 
@@ -1794,7 +1787,7 @@ __webpack_require__.r(__webpack_exports__);
         user_id: this.user.id
       };
       console.log(data);
-      axios.post('api/tasks', data).then(function (res) {
+      axios.post('tasks', data).then(function (res) {
         _this.task.body = '';
         _this.edit = false;
 
@@ -1806,8 +1799,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteTask: function deleteTask(id, index) {
       var _this2 = this;
 
-      axios["delete"]('api/tasks/' + id).then(function (res) {
-        // this.fetchTaskList()
+      axios["delete"]('tasks/' + id).then(function (res) {
         _this2.list.splice(index, 1);
       })["catch"](function (err) {
         return console.error(err);
@@ -37773,9 +37765,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+              _vm._v("\n          I'm an example component.\n        ")
             ])
           ])
         ])

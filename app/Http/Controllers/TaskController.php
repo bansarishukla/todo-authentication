@@ -48,7 +48,7 @@ class TaskController extends Controller
     $task->save();
 
     return response()->json([
-        'task' => $task
+      'task' => $task
     ]);
   }
 
@@ -94,11 +94,11 @@ class TaskController extends Controller
    */
   public function destroy($id)
   {
-      $task = Task::findOrFail($id);
-      $task->delete();
-      return response()->json([
-          'status' => 'Deleted'
-      ]);
-      return 204;
+    $task = Task::findOrFail($id);
+    $task->delete();
+    return response()->json([
+      'status' => 'Deleted'
+    ]);
+    return 204;
   }
 }
